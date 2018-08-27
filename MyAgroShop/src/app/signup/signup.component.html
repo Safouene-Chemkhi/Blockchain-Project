@@ -1,0 +1,62 @@
+<div class="text-center" class="form-container">
+  <form ngform #formData>
+    <img class="mb-4" src="" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <div class="form-group">
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <div class="input-group">
+        <span class="input-group-text">@</span>
+        <input ngModel #email="ngModel" name='email' type="email" id="inputEmail" class="form-control" placeholder="Email address"
+          required autofocus>
+      </div>
+      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+        Email is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputName" class="sr-only">Name</label>
+      <input ngModel #name="ngModel" name='name' type="text" id="inputName" class="form-control" placeholder="Name" required>
+      <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputTel" class="sr-only">tel</label>
+      <input ngModel #tel="ngModel" name='tel' type="number" id="inputTel" class="form-control" placeholder="Tel" required>
+      <div class="alert alert-danger" *ngIf="tel.touched && tel.invalid">
+        Tel is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input ngModel #password="ngModel" name='password' type="password" id="inputPassword" class="form-control" placeholder="Password"
+        required>
+      <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+        Password is required.
+      </div>
+    </div>
+
+
+    <button (click)="emailSignUp(email,password,name,tel)" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+
+  </form>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017-2018 Shop</p>
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <a href="#">Privacy</a>
+      </li>
+      <li class="list-inline-item">
+        <a href="#">Terms</a>
+      </li>
+      <li class="list-inline-item">
+        <a href="#">Support</a>
+      </li>
+    </ul>
+  </footer>
+
+</div>

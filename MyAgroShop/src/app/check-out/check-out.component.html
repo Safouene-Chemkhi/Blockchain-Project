@@ -1,0 +1,107 @@
+<body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="#" alt="" width="72" height="72">
+        <h2>Checkout form</h2>
+        <p class="lead">Please fill-up your billing address. </p>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">{{shoppingCartItemCount}}</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let productId of productIds ">
+              <div>
+                <h6 class="my-0">{{productId.title}}</h6>
+                <small class="text-muted">Quantity: {{productId.quantity}}</small>
+              </div>
+              <span class="text-muted">{{productId.quantity * productId.price | currency: ' TND ' :true}}</span>
+            </li>
+  
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total </span>
+              <strong>{{totalPrice | currency: ' TND ' :true}}</strong>
+            </li>
+          </ul>
+  
+  
+        </div>
+  
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Billing address</h4>
+          <form #f="ngForm">
+            <div class="row">
+              <div class="col-md-6 mb-3 form-group">
+                <label for="firstName">First name</label>
+                <input #firstName name="firstName" [(ngModel)]="shipping.firstName" type="text" class="form-control" id="firstName" placeholder="" required>
+                <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+                  <div *ngIf="firstName.errors.required">First Name is required.</div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3 form-group">
+                <label for="firstName">Last name</label>
+                <input #lastName name="lastName" [(ngModel)]="shipping.lastName" type="text" class="form-control" id="lastName" placeholder="" required>
+                <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+                  <div *ngIf="lastName.errors.required">First Name is required.</div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="">Email</label>
+              <div class="input-group">
+              <span class="input-group-text">@</span>
+              <input #email="ngModel" name="email" [(ngModel)]="shipping.email" type="email" class="form-control" required>
+            </div>
+              <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                <div *ngIf="email.errors.required">Email is required.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Address</label>
+              <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text" class="form-control" placeholder="Line 1"
+                required>
+              <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
+                <div *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for=""></label>
+              <input #addressLine2="ngModel" name="addressLine2" [(ngModel)]="shipping.addressLine2" type="text" class="form-control" placeholder="Line 2"
+                required>
+              <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid">
+                <div *ngIf="addressLine2.errors.required">Address Line 2 is required.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">City</label>
+              <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control" required>
+              <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+                <div *ngIf="city.errors.required">City is required.</div>
+              </div>
+            </div>
+            <button [disabled]="!f.valid" (click)="placeOrder()" class="btn btn-primary">Place Order</button>
+          </form>
+  
+        </div>
+      </div>
+    </div>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2017-2018 Shop</p>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a href="#">Privacy</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">Terms</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">Support</a>
+        </li>
+      </ul>
+    </footer>
+  </body>

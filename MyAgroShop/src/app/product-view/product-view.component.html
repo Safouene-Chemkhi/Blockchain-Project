@@ -1,0 +1,32 @@
+<div class="card bg-light border-success" *ngIf="product">
+  <div class="card-body ">
+  <div class="row">
+    <img *ngIf="product.imageUrl" class="card-img-top thumbnail" [src]="product.imageUrl" alt=" product.title">
+  </div>
+  <div class="row no-gutters">
+    <div class="card col-6  alert-success " *ngIf="product">
+      <div class="card-body ">
+        <h5 class="card-title"> {{product.title}}</h5>
+        <hr>
+        <p class="card-text">Category:       {{product.category}}</p>
+        <p class="card-text">Price:          {{product.price | currency:' TND ':true}}</p>
+        <p class="card-text">Quantity:       {{product.quantity }} units available</p>
+        <p class="card-text">Spieces:        {{product.spieces}}</p>
+        <p class="card-text">Date of harvest:{{product.dateOfHarvest}}</p>
+      </div>
+    </div>
+
+
+    <div class="card col alert-info" *ngIf="owner">
+      <div class="card-body ">
+        <h5 class="card-title ">The Owner of the product: </h5>
+        <hr>
+        <p class="card-text">Name: {{owner.name}}</p>
+        <p class="card-text">Email: {{owner.email}}</p>
+        <p class="card-text">Tel: {{owner.tel }}</p>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.thumbnail { 
+    width: 12em;
+    height: 12em;
+    border-radius: 15%;
+    background-size: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5em;
+    margin-bottom: 2em; 
+  }

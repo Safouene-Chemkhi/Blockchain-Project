@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <a class="navbar-brand" routerLink="/">Shop</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/shopping-cart">
+          Shopping Cart
+          <span class="badge badge-warning badge-pill">
+            {{shoppingCartItemCount}}
+          </span>
+        </a>
+      </li>
+      <ng-template #anonymousUser>
+      <li  class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      </ng-template>
+      <li ngbDropdown *ngIf="auth.user$ | async as user ; else anonymousUser" class="nav-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.email }}</a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" routerLink="products">Manage My Products</a>
+          <a class="dropdown-item" routerLink="#">Account Settings</a>
+          <a class="dropdown-item" (click)="logout()" >Log Out</a>
+        </div>
+      </li>
+    </ul>
+    <form (ngSubmit)="trace()" class="form-inline mt-2 mt-md-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Enter Id" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Trace Product</button>
+    </form>
+  </div>
+</nav>
