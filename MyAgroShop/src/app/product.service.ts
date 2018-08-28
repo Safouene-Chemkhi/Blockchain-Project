@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '../../node_modules/angularfire2/database';
 import { map } from 'rxjs/operators';
 import { Product } from './models/product';
@@ -10,7 +10,7 @@ import { Observable } from '../../node_modules/rxjs';
 export class ProductService {
   uid;
   constructor(private db : AngularFireDatabase ) {
-     this.uid = localStorage.getItem('uid');
+    this.uid =  localStorage.getItem('uid');
    }
 
   create(product : Product ){

@@ -7,6 +7,8 @@ import { ProductService } from '../product.service';
 import { Subscription } from '../../../node_modules/rxjs';
 import { OrderService } from '../order.service';
 import { Router } from '../../../node_modules/@angular/router';
+import { UserService } from '../user.service';
+import { take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-check-out',
@@ -20,14 +22,15 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   productIds:Product[];
   totalPrice:number;
   subscription : Subscription;
-  constructor(private router :Router, private orderService :OrderService, private shoppingCartService : ShoppingCartService,private productService : ProductService) { }
+  constructor(private userService: UserService, private router :Router, private orderService :OrderService, private shoppingCartService : ShoppingCartService,private productService : ProductService) { }
   shipping : {    firstName?: string,
     lastName?: string,
     addressLine1?: number,
     addressLine2?: number,
     city?: string,
     email?: string} ={} 
-
+    user;
+    uid;
   async placeOrder(){
     let order = {
       datePlaced: new Date().getTime(),
@@ -37,7 +40,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     //console.log(order);
     let result = await this.orderService.storeOrder(order);
     this.shoppingCartService.clearCart();
-    this.router.navigate(['/order-success', result.key]);
+    this.router.navigate(['/order-success', result.key]); 
   }
 
   async ngOnInit() {
@@ -53,6 +56,9 @@ export class CheckOutComponent implements OnInit, OnDestroy {
         this.shoppingCartItemCount += 1 ;
       } 
     })
+    this.uid = await localStorage.getItem('uid');
+    await this.userService.get(this.uid).pipe(take(1)).subscribe(o =>{this.user = o;this.shipping.email=this.user.email;})
+    
   }
 
   ngOnDestroy(){

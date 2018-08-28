@@ -28,7 +28,8 @@ export class ProductViewComponent implements OnInit {
   async ngOnInit() {
     await this.productService.getProd(this.id).pipe(take(1)).subscribe(p => {
       this.product = p
-      this.userService.get("vkk9BN2J6FcOYnbnjliFRxhf7XJ3").pipe(take(1)).subscribe(o =>this.owner = o);;
+      let owner = this.product.owner ;
+      this.userService.get(owner).pipe(take(1)).subscribe(o =>this.owner = o);;
     });
 
   }
