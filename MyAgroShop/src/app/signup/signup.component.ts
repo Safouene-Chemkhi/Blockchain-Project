@@ -17,9 +17,12 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  emailSignUp(email, password,name,tel) {
-    console.log(email);
-    this.auth.emailSignUp(email.value,password.value,name.value,tel.value);
+  async emailSignUp(email, password,name,tel) {
+    //console.log(email);
+    await this.auth.emailSignUp(email.value,password.value,name.value,tel.value);
+    this.auth.user$.subscribe(user => {
+      if (!user) return; 
+      localStorage.setItem('uid',user.uid) ;})
     //return this.afAuth.auth
    //   .createUserWithEmailAndPassword('safouene.cs3@gmail.com', '123456789')
   }
