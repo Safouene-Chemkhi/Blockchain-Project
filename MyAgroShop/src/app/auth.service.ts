@@ -49,7 +49,7 @@ export class AuthService {
   emailLogin(email: string, password: string) {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password).then(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/']); 
     }).catch(error => this.handleError(error));
   }
 

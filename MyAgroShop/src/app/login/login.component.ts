@@ -19,9 +19,13 @@ export class LoginComponent {
    }
 
 
-  login(email ,password) {
-    console.log(email);
-    this.auth.emailLogin(email.value,password.value);
+  async login(email ,password) {
+    await this.auth.emailLogin(email.value,password.value);
+    this.auth.user$.subscribe(user => {
+      if (!user) return; 
+      localStorage.setItem('uid',user.uid) ;
+      //console.log(user.uid);
+    })
   }
 
 
