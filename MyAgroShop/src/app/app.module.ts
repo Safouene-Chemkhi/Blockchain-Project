@@ -35,6 +35,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { OrderService } from './order.service';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { RequestsComponent } from './requests/requests.component';
+import { RequestService } from './request.service';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { ProductViewComponent } from './product-view/product-view.component';
     ProductFilterComponent,
     ProductCardComponent,
     ProductViewComponent,
+    RequestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ import { ProductViewComponent } from './product-view/product-view.component';
       { path : 'products/:id', component : ProductFormComponent, canActivate: [AuthGuard]},
       { path : 'products', component : ProductsComponent, canActivate: [AuthGuard]},
       { path : 'order-success/:id', component:OrderSucessComponent, canActivate: [AuthGuard] },
+      { path : 'requests', component : RequestsComponent, canActivate: [AuthGuard]},
       { path : 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
       { path : 'admin/products', component:AdminProductsComponent, canActivate: [AuthGuard] },
       { path : 'admin/orders', component:AdminOrdersComponent, canActivate: [AuthGuard ] },
@@ -90,7 +94,8 @@ import { ProductViewComponent } from './product-view/product-view.component';
     CategoryService,
     ProductService,
     ShoppingCartService,
-    OrderService
+    OrderService,
+    RequestService
   ],
   bootstrap: [AppComponent]
 })

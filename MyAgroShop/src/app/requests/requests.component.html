@@ -1,0 +1,44 @@
+<h1>Product Requests</h1>
+<div class="row col-10 bg-light" >
+  <p>
+    You have {{ requestsCount }} Product requests.   
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="text-center">Product</th>
+        <th class="text-center" >Quantity</th>
+        <th class="text-center" >Total Price</th>
+        <th class="text-center">Customer Name</th>
+        <th class="text-center">Customer email</th>
+        <th class="text-center">Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let productId of productIds ">
+          <td>
+              <div>
+                  <img [src]="productId.imageUrl" class="thumbnail" />
+              </div>
+            </td>
+        <td class="text-center">{{productId.title}}</td>
+        <td class="text-center">{{productId.quantity}}</td>
+        <td class="text-center">{{productId.quantity * productId.price | currency: ' TND ' :true}}</td>
+        <td class="text-center">{{productId.firstName }} {{ productId.lastName}}</td>
+        <td class="text-center">{{productId.email}}</td>
+        <td class="text-center">{{productId.addressLine1 }} {{ productId.addressLine1}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+
+</div>
