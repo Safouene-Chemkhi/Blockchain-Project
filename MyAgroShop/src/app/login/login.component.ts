@@ -21,6 +21,7 @@ export class LoginComponent {
 
   async login(email ,password) {
     await this.auth.emailLogin(email.value,password.value);
+    window.location.reload();
     this.auth.user$.subscribe(user => {
       if (!user) return; 
       localStorage.setItem('uid',user.uid) ;

@@ -27,8 +27,9 @@ export class BsNavbarComponent implements OnInit {
    })
   }
   async logout(){
-    await this.auth.logout();
     localStorage.removeItem('uid');
+    await this.auth.logout();
+    
   }
 
   trace(){

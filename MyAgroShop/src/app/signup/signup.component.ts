@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit {
   async emailSignUp(email, password,name,tel) {
     //console.log(email);
     await this.auth.emailSignUp(email.value,password.value,name.value,tel.value);
+    window.location.reload();
     this.auth.user$.subscribe(user => {
       if (!user) return; 
       localStorage.setItem('uid',user.uid) ;})
